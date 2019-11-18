@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ComputerScience.DataStructures.BinarySearchTree;
 using NUnit.Framework;
 
@@ -60,6 +61,75 @@ namespace ComputerScience.Tests.DataStructures
             Assert.That(root.Left.Left.Value, Is.EqualTo(1));
             Assert.That(root.Right.Value, Is.EqualTo(6));
             Assert.That(root.Right.Right, Is.Null);
+        }
+
+        [Test]
+        public void TraversePreOrder()
+        {
+            // Arrange
+            var bst = new BinarySearchTree();
+            
+            // Act
+            bst.Insert(20);
+            bst.Insert(10);
+            bst.Insert(30);
+            bst.Insert(6);
+            bst.Insert(14);
+            bst.Insert(24);
+            bst.Insert(3);
+            bst.Insert(8);
+            bst.Insert(26);
+
+            var result = bst.TraversePreOrder();
+            
+            // Assert
+            Assert.That(result, Is.EqualTo(new List<int> { 20, 10, 6, 3, 8, 14, 30, 24, 26 }));
+        }
+
+        [Test]
+        public void TraverseInOrder()
+        {
+            // Arrange
+            var bst = new BinarySearchTree();
+            
+            // Act
+            bst.Insert(20);
+            bst.Insert(10);
+            bst.Insert(30);
+            bst.Insert(6);
+            bst.Insert(14);
+            bst.Insert(24);
+            bst.Insert(3);
+            bst.Insert(8);
+            bst.Insert(26);
+
+            var result = bst.TraverseInOrder();
+            
+            // Assert
+            Assert.That(result, Is.EqualTo(new List<int> { 3, 6, 8, 10, 14, 20, 24, 26, 30 }));
+        }
+
+        [Test]
+        public void TraversePostOrder()
+        {
+            // Arrange
+            var bst = new BinarySearchTree();
+            
+            // Act
+            bst.Insert(20);
+            bst.Insert(10);
+            bst.Insert(30);
+            bst.Insert(6);
+            bst.Insert(14);
+            bst.Insert(24);
+            bst.Insert(3);
+            bst.Insert(8);
+            bst.Insert(26);
+
+            var result = bst.TraversePostOrder();
+            
+            // Assert
+            Assert.That(result, Is.EqualTo(new List<int> { 3, 8, 6, 14, 10, 26, 24, 30, 20 }));
         }
     }
 }

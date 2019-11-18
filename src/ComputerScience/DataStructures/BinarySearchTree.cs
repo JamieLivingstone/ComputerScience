@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ComputerScience.DataStructures.BinarySearchTree
 {
     public class Node
@@ -68,6 +70,93 @@ namespace ComputerScience.DataStructures.BinarySearchTree
         public Node GetRoot()
         {
             return _root;
+        }
+
+        public IEnumerable<int> TraversePreOrder()
+        {
+            return TraversePreOrder(_root);
+        }
+
+        public IEnumerable<int> TraverseInOrder()
+        {
+            return TraverseInOrder(_root);
+        }
+        
+        public IEnumerable<int> TraversePostOrder()
+        {
+            return TraversePostOrder(_root);
+        }
+        
+        private static IEnumerable<int> TraversePreOrder(Node node)
+        {
+            var result = new List<int>();
+
+            if (node == null)
+            {
+                return result;
+            }
+            
+            result.Add(node.Value);
+
+            if (node.Left != null)
+            {
+                result.AddRange(TraversePreOrder(node.Left));
+            }
+
+            if (node.Right != null)
+            {
+                result.AddRange(TraversePreOrder(node.Right));
+            }
+            
+            return result;
+        }
+
+        private static IEnumerable<int> TraverseInOrder(Node node)
+        {
+            var result = new List<int>();
+
+            if (node == null)
+            {
+                return result;
+            }
+
+            if (node.Left != null)
+            {
+                result.AddRange(TraverseInOrder(node.Left));
+            }
+            
+            result.Add(node.Value);
+
+            if (node.Right != null)
+            {
+                result.AddRange(TraverseInOrder(node.Right));
+            }
+
+            return result;
+        }
+
+        private static IEnumerable<int> TraversePostOrder(Node node)
+        {
+            var result = new List<int>();
+
+            if (node == null)
+            {
+                return result;
+            }
+
+            if (node.Left != null)
+            {
+                result.AddRange(TraversePostOrder(node.Left));
+            }
+
+            if (node.Right != null)
+            {
+                result.AddRange(TraversePostOrder(node.Right));
+            }
+
+            result.Add(node.Value);
+            
+            return result;
         }
     }
 }
